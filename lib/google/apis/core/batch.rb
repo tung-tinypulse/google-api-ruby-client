@@ -53,9 +53,9 @@ module GoogleV2
         ##
         # Add a new call to the batch request.
         #
-        # @param [Google::Apis::Core::HttpCommand] call API Request to add
+        # @param [GoogleV2::Apis::Core::HttpCommand] call API Request to add
         # @yield [result, err] Result & error when response available
-        # @return [Google::Apis::Core::BatchCommand] self
+        # @return [GoogleV2::Apis::Core::BatchCommand] self
         def add(call, &block)
           ensure_valid_command(call)
           @calls << [call, block]
@@ -101,7 +101,7 @@ module GoogleV2
 
         # Encode the batch request
         # @return [void]
-        # @raise [Google::Apis::BatchError] if batch is empty
+        # @raise [GoogleV2::Apis::BatchError] if batch is empty
         def prepare!
           fail BatchError, 'Cannot make an empty batch request' if @calls.empty?
 
@@ -120,10 +120,10 @@ module GoogleV2
         end
 
         def ensure_valid_command(command)
-          if command.is_a?(Google::Apis::Core::BaseUploadCommand) || command.is_a?(Google::Apis::Core::DownloadCommand)
-            fail Google::Apis::ClientError, 'Can not include media requests in batch'
+          if command.is_a?(GoogleV2::Apis::Core::BaseUploadCommand) || command.is_a?(GoogleV2::Apis::Core::DownloadCommand)
+            fail GoogleV2::Apis::ClientError, 'Can not include media requests in batch'
           end
-          fail Google::Apis::ClientError, 'Invalid command object' unless command.is_a?(HttpCommand)
+          fail GoogleV2::Apis::ClientError, 'Invalid command object' unless command.is_a?(HttpCommand)
         end
 
         def id_to_header(call_id)
@@ -141,8 +141,8 @@ module GoogleV2
       # Wrapper request for batching multiple uploads in a single server request
       class BatchUploadCommand < BatchCommand
         def ensure_valid_command(command)
-          fail Google::Apis::ClientError, 'Can only include upload commands in batch' \
-            unless command.is_a?(Google::Apis::Core::BaseUploadCommand)
+          fail GoogleV2::Apis::ClientError, 'Can only include upload commands in batch' \
+            unless command.is_a?(GoogleV2::Apis::Core::BaseUploadCommand)
         end
 
         def prepare!
@@ -157,7 +157,7 @@ module GoogleV2
         ##
         # Serialize a single batched call for assembling the multipart message
         #
-        # @param [Google::Apis::Core::HttpCommand] call
+        # @param [GoogleV2::Apis::Core::HttpCommand] call
         #   the call to serialize.
         # @return [IO]
         #   the serialized request
@@ -167,7 +167,7 @@ module GoogleV2
           parts << build_head(call)
           parts << build_body(call) unless call.body.nil?
           length = parts.inject(0) { |a, e| a + e.length }
-          Google::Apis::Core::CompositeIO.new(*parts)
+          GoogleV2::Apis::Core::CompositeIO.new(*parts)
         end
 
         protected

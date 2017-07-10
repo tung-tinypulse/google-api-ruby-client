@@ -38,7 +38,7 @@ module GoogleV2
           inflections.irregular('teamdrive', 'teamdrives')
         end
 
-        include Google::Apis::Core::Logging
+        include GoogleV2::Apis::Core::Logging
         include NameHelpers
 
         def initialize(file_path = nil)
@@ -65,7 +65,7 @@ module GoogleV2
         end
 
         # Determine the ruby method name to generate for a given method in discovery.
-        # @param [Google::Apis::DiscoveryV1::RestMethod] method
+        # @param [GoogleV2::Apis::DiscoveryV1::RestMethod] method
         #  Fragment of the discovery doc describing the method
         def infer_method_name(method)
           pick_name(infer_method_name_for_rpc(method) || infer_method_name_from_id(method))
@@ -104,7 +104,7 @@ module GoogleV2
         private
 
         # For RPC style methods, pick a name based off the request objects.
-        # @param [Google::Apis::DiscoveryV1::RestMethod] method
+        # @param [GoogleV2::Apis::DiscoveryV1::RestMethod] method
         #  Fragment of the discovery doc describing the method
         def infer_method_name_for_rpc(method)
           return nil if method.request.nil?
@@ -127,7 +127,7 @@ module GoogleV2
 
         # For REST style methods, build a method name from the verb/resource(s) in the method
         # id. IDs are in the form <api>.<resource>.<verb>
-        # @param [Google::Apis::DiscoveryV1::RestMethod] method
+        # @param [GoogleV2::Apis::DiscoveryV1::RestMethod] method
         #  Fragment of the discovery doc describing the method
         def infer_method_name_from_id(method)
           parts = method.id.split('.')
@@ -159,22 +159,22 @@ module GoogleV2
       # - Attempts to simplify names where possible to make APIs more sensible
       class Annotator
         include NameHelpers
-        include Google::Apis::Core::Logging
+        include GoogleV2::Apis::Core::Logging
 
         # Don't expose these in the API directly.
         PARAMETER_BLACKLIST = %w(alt access_token bearer_token oauth_token pp prettyPrint
                                  $.xgafv callback upload_protocol uploadType)
 
         # Prepare the API for the templates.
-        # @param [Google::Apis::DiscoveryV1::RestDescription] description
+        # @param [GoogleV2::Apis::DiscoveryV1::RestDescription] description
         #  API Description
         def self.process(description, api_names = nil)
           Annotator.new(description, api_names).annotate_api
         end
 
-        # @param [Google::Apis::DiscoveryV1::RestDescription] description
+        # @param [GoogleV2::Apis::DiscoveryV1::RestDescription] description
         #  API Description
-        # @param [Google::Api::Generator::Names] api_names
+        # @param [GoogleV2::Api::Generator::Names] api_names
         #  Name helper instanace
         def initialize(description, api_names = nil)
           api_names = Names.new if api_names.nil?

@@ -1,14 +1,14 @@
 <% if cls.type == 'object' -%>
 
 class <%= cls.generated_class_name %>
-  class Representation < Google::Apis::Core::JsonRepresentation; end
+  class Representation < GoogleV2::Apis::Core::JsonRepresentation; end
 <%   for child_class in cls.properties.values -%>
 <%     if child_class._ref.nil? -%>
 <%= indent(include('representation_stub', :cls => child_class), 2) -%>
 <%     end -%>
 <%   end -%>
 
-  include Google::Apis::Core::JsonObjectSupport
+  include GoogleV2::Apis::Core::JsonObjectSupport
 end
 <% elsif cls.items && cls.items._ref.nil? -%>
 <%= include('representation_stub', :cls => cls.items, :api => api) -%>

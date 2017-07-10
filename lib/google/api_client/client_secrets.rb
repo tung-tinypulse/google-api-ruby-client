@@ -51,7 +51,7 @@ module GoogleV2
       # @param [String] filename
       #   Path to file to load
       #
-      # @return [Google::APIClient::ClientSecrets]
+      # @return [GoogleV2::APIClient::ClientSecrets]
       #   OAuth client settings
       def self.load(filename=nil)
         if filename && File.directory?(filename)

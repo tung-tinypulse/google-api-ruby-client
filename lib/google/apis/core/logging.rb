@@ -22,7 +22,7 @@ module GoogleV2
         # Get the logger instance
         # @return [Logger]
         def logger
-          Google::Apis.logger
+          GoogleV2::Apis.logger
         end
       end
     end

@@ -117,7 +117,7 @@ module GoogleV2
         end
 
         def qualified_name
-          sprintf('Google::Apis::%s', module_name)
+          sprintf('GoogleV2::Apis::%s', module_name)
         end
 
         def service_name

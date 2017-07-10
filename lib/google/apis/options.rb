@@ -48,7 +48,7 @@ module GoogleV2
       # @!attribute [rw] read_timeout_sec
       #   @return [Fixnum] How long, in seconds, before requests time out
       # Get the default options
-      # @return [Google::Apis::ClientOptions]
+      # @return [GoogleV2::Apis::ClientOptions]
       def self.default
         @options ||= ClientOptions.new
       end
@@ -72,7 +72,7 @@ module GoogleV2
       #   @return [Fixnum] Version of the error format to request/expect.
 
       # Get the default options
-      # @return [Google::Apis::RequestOptions]
+      # @return [GoogleV2::Apis::RequestOptions]
       def self.default
         @options ||= RequestOptions.new
       end

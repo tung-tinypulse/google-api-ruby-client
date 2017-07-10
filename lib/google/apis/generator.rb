@@ -24,11 +24,11 @@ module GoogleV2
     # Generates ruby classes for APIs from discovery documents
     # @private
     class Generator
-      Discovery = Google::Apis::DiscoveryV1
+      Discovery = GoogleV2::Apis::DiscoveryV1
 
       # Load templates
       def initialize(api_names: nil)
-        @names = Google::Apis::Generator::Names.new(api_names || File.join(Google::Apis::ROOT, 'api_names.yaml'))
+        @names = GoogleV2::Apis::Generator::Names.new(api_names || File.join(GoogleV2::Apis::ROOT, 'api_names.yaml'))
         @module_template = Template.load('module.rb')
         @service_template = Template.load('service.rb')
         @classes_template = Template.load('classes.rb')

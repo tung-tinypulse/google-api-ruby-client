@@ -33,7 +33,7 @@ module GoogleV2
 <% if api.documentation_link -%>
       # @see <%= api.documentation_link %>
 <% end -%>
-      class <%= api.service_name %> < Google::Apis::Core::BaseService
+      class <%= api.service_name %> < GoogleV2::Apis::Core::BaseService
 <% for param in api.parameters.values.reject {|p| p.name == 'fields'} -%>
         # @return [<%= param.generated_type %>]
         #  <%= block_comment(param.description, 8, 2) %>

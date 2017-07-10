@@ -67,7 +67,7 @@ module GoogleV2
           head << "Content-Length: #{@length}\r\n" unless @length.nil?
           head << "Content-Transfer-Encoding: binary\r\n"
           head << "\r\n"
-          Google::Apis::Core::CompositeIO.new(StringIO.new(head), @io, StringIO.new("\r\n"))
+          GoogleV2::Apis::Core::CompositeIO.new(StringIO.new(head), @io, StringIO.new("\r\n"))
         end
       end
 
@@ -100,7 +100,7 @@ module GoogleV2
         def add_json(body, content_id: nil)
           header = {}
           header['Content-ID'] = content_id unless content_id.nil?
-          @parts << Google::Apis::Core::JsonPart.new(body, header).to_io(@boundary)
+          @parts << GoogleV2::Apis::Core::JsonPart.new(body, header).to_io(@boundary)
           self
         end
 
@@ -116,7 +116,7 @@ module GoogleV2
               'Content-Type' => content_type || 'application/octet-stream'
           }
           header['Content-Id'] = content_id unless content_id.nil?
-          @parts << Google::Apis::Core::FilePart.new(upload_io,
+          @parts << GoogleV2::Apis::Core::FilePart.new(upload_io,
                                                      header).to_io(@boundary)
           self
         end
@@ -127,7 +127,7 @@ module GoogleV2
         #  IO stream
         def assemble
           @parts <<  StringIO.new("--#{@boundary}--\r\n\r\n")
-          Google::Apis::Core::CompositeIO.new(*@parts)
+          GoogleV2::Apis::Core::CompositeIO.new(*@parts)
         end
       end
     end

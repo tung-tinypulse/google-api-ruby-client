@@ -61,9 +61,9 @@ module GoogleV2
         #   HTTP client
         # @yield [result, err] Result or error if block supplied
         # @return [Object]
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        # @raise [GoogleV2::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [GoogleV2::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [GoogleV2::Apis::AuthorizationError] Authorization is required
         def execute_once(client, &block)
           request_header = header.dup
           apply_request_options(request_header)

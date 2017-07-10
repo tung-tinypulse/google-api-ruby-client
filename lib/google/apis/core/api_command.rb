@@ -27,13 +27,13 @@ module GoogleV2
         JSON_CONTENT_TYPE = 'application/json'
         FIELDS_PARAM = 'fields'
         ERROR_REASON_MAPPING = {
-          'rateLimitExceeded' => Google::Apis::RateLimitError,
-          'userRateLimitExceeded' => Google::Apis::RateLimitError,
-          'projectNotLinked' => Google::Apis::ProjectNotLinkedError
+          'rateLimitExceeded' => GoogleV2::Apis::RateLimitError,
+          'userRateLimitExceeded' => GoogleV2::Apis::RateLimitError,
+          'projectNotLinked' => GoogleV2::Apis::ProjectNotLinkedError
         }
 
         # JSON serializer for request objects
-        # @return [Google::Apis::Core::JsonRepresentation]
+        # @return [GoogleV2::Apis::Core::JsonRepresentation]
         attr_accessor :request_representation
 
         # Request body to serialize
@@ -41,7 +41,7 @@ module GoogleV2
         attr_accessor :request_object
 
         # JSON serializer for response objects
-        # @return [Google::Apis::Core::JsonRepresentation]
+        # @return [GoogleV2::Apis::Core::JsonRepresentation]
         attr_accessor :response_representation
 
         # Class to instantiate when de-serializing responses
@@ -97,9 +97,9 @@ module GoogleV2
         # @param [String] message
         #   Error message text
         # @return [void]
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        # @raise [GoogleV2::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [GoogleV2::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [GoogleV2::Apis::AuthorizationError] Authorization is required
         def check_status(status, header = nil, body = nil, message = nil)
           case status
           when 400, 402...500

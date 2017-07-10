@@ -40,13 +40,13 @@ module GoogleV2
         attr_accessor :upload_content_type
 
         # Content, as UploadIO
-        # @return [Google::Apis::Core::UploadIO]
+        # @return [GoogleV2::Apis::Core::UploadIO]
         attr_accessor :upload_io
 
         # Ensure the content is readable and wrapped in an IO instance.
         #
         # @return [void]
-        # @raise [Google::Apis::ClientError] if upload source is invalid
+        # @raise [GoogleV2::Apis::ClientError] if upload source is invalid
         def prepare!
           super
           if streamable?(upload_source)
@@ -60,7 +60,7 @@ module GoogleV2
             end
             @close_io_on_finish = true
           else
-            fail Google::Apis::ClientError, 'Invalid upload source'
+            fail GoogleV2::Apis::ClientError, 'Invalid upload source'
           end
           if self.upload_content_type.nil? || self.upload_content_type.empty?
             self.upload_content_type = 'application/octet-stream'
@@ -83,10 +83,10 @@ module GoogleV2
       class RawUploadCommand < BaseUploadCommand
         RAW_PROTOCOL = 'raw'
 
-        # Ensure the content is readable and wrapped in an {{Google::Apis::Core::UploadIO}} instance.
+        # Ensure the content is readable and wrapped in an {{GoogleV2::Apis::Core::UploadIO}} instance.
         #
         # @return [void]
-        # @raise [Google::Apis::ClientError] if upload source is invalid
+        # @raise [GoogleV2::Apis::ClientError] if upload source is invalid
         def prepare!
           super
           self.body = upload_io
@@ -103,7 +103,7 @@ module GoogleV2
         # Encode the multipart request
         #
         # @return [void]
-        # @raise [Google::Apis::ClientError] if upload source is invalid
+        # @raise [GoogleV2::Apis::ClientError] if upload source is invalid
         def prepare!
           super
           multipart = Multipart.new
@@ -133,7 +133,7 @@ module GoogleV2
         # Reset upload to initial state.
         #
         # @return [void]
-        # @raise [Google::Apis::ClientError] if upload source is invalid
+        # @raise [GoogleV2::Apis::ClientError] if upload source is invalid
         def prepare!
           @state = :start
           @upload_url = nil
@@ -151,9 +151,9 @@ module GoogleV2
         #  Response body
         # @return [Object]
         #   Response object
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        # @raise [GoogleV2::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [GoogleV2::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [GoogleV2::Apis::AuthorizationError] Authorization is required
         def process_response(status, header, body)
           @offset = Integer(header[BYTES_RECEIVED_HEADER].first) unless header[BYTES_RECEIVED_HEADER].empty?
           @upload_url = header[UPLOAD_URL_HEADER].first unless header[UPLOAD_URL_HEADER].empty?
@@ -165,7 +165,7 @@ module GoogleV2
             @state = :final
           elsif upload_status == STATUS_CANCELLED
             @state = :cancelled
-            fail Google::Apis::ClientError, body
+            fail GoogleV2::Apis::ClientError, body
           end
           super(status, header, body)
         end
@@ -186,7 +186,7 @@ module GoogleV2
                          header: request_header,
                          follow_redirect: true)
         rescue => e
-          raise Google::Apis::ServerError, e.message
+          raise GoogleV2::Apis::ServerError, e.message
         end
 
         # Query for the status of an incomplete upload
@@ -194,7 +194,7 @@ module GoogleV2
         # @param [HTTPClient] client
         #   HTTP client
         # @return [HTTP::Message]
-        # @raise [Google::Apis::ServerError] Unable to send the request
+        # @raise [GoogleV2::Apis::ServerError] Unable to send the request
         def send_query_command(client)
           logger.debug { sprintf('Sending upload query command to %s', @upload_url) }
 
@@ -211,7 +211,7 @@ module GoogleV2
         # @param [HTTPClient] client
         #   HTTP client
         # @return [HTTP::Message]
-        # @raise [Google::Apis::ServerError] Unable to send the request
+        # @raise [GoogleV2::Apis::ServerError] Unable to send the request
         def send_upload_command(client)
           logger.debug { sprintf('Sending upload command to %s', @upload_url) }
 
@@ -236,9 +236,9 @@ module GoogleV2
         #   HTTP client
         # @yield [result, err] Result or error if block supplied
         # @return [Object]
-        # @raise [Google::Apis::ServerError] An error occurred on the server and the request can be retried
-        # @raise [Google::Apis::ClientError] The request is invalid and should not be retried without modification
-        # @raise [Google::Apis::AuthorizationError] Authorization is required
+        # @raise [GoogleV2::Apis::ServerError] An error occurred on the server and the request can be retried
+        # @raise [GoogleV2::Apis::ClientError] The request is invalid and should not be retried without modification
+        # @raise [GoogleV2::Apis::AuthorizationError] Authorization is required
         def execute_once(client, &block)
           case @state
           when :start
