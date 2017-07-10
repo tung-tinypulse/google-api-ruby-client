@@ -23,7 +23,7 @@ require 'google/apis/options'
 require 'googleauth'
 require 'httpclient'
 
-module Google
+module GoogleV2
   module Apis
     module Core
       # Helper class for enumerating over a result set requiring multiple fetches

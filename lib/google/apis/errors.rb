@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module Google
+module GoogleV2
   module Apis
     # Base error, capable of wrapping another
     class Error < StandardError

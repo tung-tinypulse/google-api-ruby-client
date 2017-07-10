@@ -15,7 +15,7 @@
 require 'google/apis/version'
 require 'logger'
 
-module Google
+module GoogleV2
   module Apis
     ROOT = File.expand_path('..', File.dirname(__dir__))
 

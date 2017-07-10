@@ -16,7 +16,7 @@ require 'active_support/inflector'
 require 'erb'
 require 'ostruct'
 
-module Google
+module GoogleV2
   module Apis
     # @private
     class Generator

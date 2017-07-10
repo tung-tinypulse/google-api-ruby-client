@@ -13,7 +13,7 @@
 # limitations under the License.
 
 
-module Google
+module GoogleV2
   module Apis
     module Core
       # Part of a multipart request for holding JSON data

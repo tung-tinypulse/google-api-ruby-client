@@ -30,7 +30,7 @@ require 'google/apis/core/upload'
 require 'google/apis/core/download'
 require 'addressable/uri'
 require 'securerandom'
-module Google
+module GoogleV2
   module Apis
     module Core
       class CompositeIO

@@ -19,7 +19,7 @@ require 'google/apis/generator/template'
 require 'active_support/inflector'
 require 'yaml'
 
-module Google
+module GoogleV2
   module Apis
     # Generates ruby classes for APIs from discovery documents
     # @private

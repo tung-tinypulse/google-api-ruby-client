@@ -14,7 +14,7 @@
 
 require 'google/apis'
 
-module Google
+module GoogleV2
   module Apis
     module Core
       # Logging support

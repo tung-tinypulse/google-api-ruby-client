@@ -14,7 +14,7 @@
 
 require 'json'
 
-module Google
+module GoogleV2
   class APIClient
     # @deprecated Use google-auth-library-ruby instead
     class RedisStore

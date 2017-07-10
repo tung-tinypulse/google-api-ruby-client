@@ -33,7 +33,7 @@ require 'google/apis/core/composite_io'
 require 'addressable/uri'
 require 'securerandom'
 
-module Google
+module GoogleV2
   module Apis
     module Core
       # Wrapper request for batching multiple calls in a single server request

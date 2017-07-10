@@ -23,7 +23,7 @@ require 'google/apis/generator/model'
 require 'google/apis/generator/helpers'
 require 'addressable/uri'
 
-module Google
+module GoogleV2
   module Apis
 
     # @private

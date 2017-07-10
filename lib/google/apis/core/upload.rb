@@ -20,7 +20,7 @@ require 'addressable/uri'
 require 'tempfile'
 require 'mime-types'
 
-module Google
+module GoogleV2
   module Apis
     module Core
       # Base upload command. Not intended to be used directly

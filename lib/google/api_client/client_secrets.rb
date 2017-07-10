@@ -15,7 +15,7 @@
 require 'json'
 
 
-module Google
+module GoogleV2
   class APIClient
     ##
     # Manages the persistence of client configuration data and secrets. Format

@@ -20,7 +20,7 @@ require 'retriable'
 require 'google/apis/core/logging'
 require 'pp'
 
-module Google
+module GoogleV2
   module Apis
     module Core
       # Command for HTTP request/response.

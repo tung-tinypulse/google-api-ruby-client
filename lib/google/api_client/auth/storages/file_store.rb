@@ -14,7 +14,7 @@
 
 require 'json'
 
-module Google
+module GoogleV2
   class APIClient
     ##
     # Represents cached OAuth 2 tokens stored on local disk in a

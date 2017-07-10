@@ -16,7 +16,7 @@ require 'google/apis/core/api_command'
 require 'google/apis/errors'
 require 'addressable/uri'
 
-module Google
+module GoogleV2
   module Apis
     module Core
       # Streaming/resumable media download support

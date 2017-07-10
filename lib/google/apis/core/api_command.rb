@@ -19,7 +19,7 @@ require 'google/apis/errors'
 require 'json'
 require 'retriable'
 
-module Google
+module GoogleV2
   module Apis
     module Core
       # Command for executing most basic API request with JSON requests/responses

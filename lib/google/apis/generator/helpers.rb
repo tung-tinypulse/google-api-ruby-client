@@ -1,4 +1,4 @@
-module Google
+module GoogleV2
   module Apis
     # @private
     class Generator

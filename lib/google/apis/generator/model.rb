@@ -17,7 +17,7 @@ require 'google/apis/discovery_v1'
 
 # Extend the discovery API classes with additional data needed to make
 # code generation produce better results
-module Google
+module GoogleV2
   module Apis
     module DiscoveryV1
       TYPE_MAP = {

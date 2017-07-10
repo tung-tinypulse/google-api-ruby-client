@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module Google
+module GoogleV2
   module Apis
     module Core
       # Adds to_hash to objects

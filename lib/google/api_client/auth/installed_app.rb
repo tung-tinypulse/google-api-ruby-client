@@ -15,7 +15,7 @@
 require 'webrick'
 require 'launchy'
 
-module Google
+module GoogleV2
   class APIClient
 
     # Small helper for the sample apps for performing OAuth 2.0 flows from the command
